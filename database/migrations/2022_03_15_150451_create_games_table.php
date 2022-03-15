@@ -14,13 +14,15 @@ class CreateGamesTable extends Migration
     public function up()
     {
         Schema::create('games', function (Blueprint $table) {
-            $table->id();
-            $table->timestamp('data');
-            $table->unsignedBigInteger('player_id');
+            $table->id();            
+            $table->unsignedBigInteger('player_id')->nullable();
             $table->integer('dau1');
             $table->integer('dau2');
-            $table->boolean('guanyada');            
+            $table->boolean('guanyada');
+            $table->timestamp('data')->nullable();          
             $table->timestamps();
+
+            $table->foreign('player_id')->references('id')->on('players')->onDelete('set null');
         });
     }
 

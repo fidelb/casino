@@ -22,8 +22,7 @@ use Illuminate\Database\Eloquent\Model;
 class Game extends Model
 {
     
-    static $rules = [
-		'data' => 'required',
+    static $rules = [		
 		'player_id' => 'required',
 		'dau1' => 'required',
 		'dau2' => 'required',

@@ -12,9 +12,9 @@
             {!! $errors->first('email', '<div class="invalid-feedback">:message</div>') !!}
         </div>
         <div class="form-group">
-            {{ Form::label('data_regostre') }}
-            {{ Form::text('data_regostre', $player->data_regostre, ['class' => 'form-control' . ($errors->has('data_regostre') ? ' is-invalid' : ''), 'placeholder' => 'Data Regostre']) }}
-            {!! $errors->first('data_regostre', '<div class="invalid-feedback">:message</div>') !!}
+            {{ Form::label('data_registre') }}
+            {{ Form::text('data_registre', $player->data_registre, ['class' => 'form-control' . ($errors->has('data_registre') ? ' is-invalid' : ''), 'placeholder' => 'Data Registre']) }}
+            {!! $errors->first('data_registre', '<div class="invalid-feedback">:message</div>') !!}
         </div>
 
     </div>

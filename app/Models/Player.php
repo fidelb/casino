@@ -10,7 +10,7 @@ use Illuminate\Database\Eloquent\Model;
  * @property $id
  * @property $nickname
  * @property $email
- * @property $data_regostre
+ * @property $data_registre
  * @property $created_at
  * @property $updated_at
  *
@@ -23,7 +23,6 @@ class Player extends Model
     static $rules = [
 		'nickname' => 'required',
 		'email' => 'required',
-		'data_regostre' => 'required',
     ];
 
     protected $perPage = 20;
@@ -33,8 +32,11 @@ class Player extends Model
      *
      * @var array
      */
-    protected $fillable = ['nickname','email','data_regostre'];
+    protected $fillable = ['nickname','email','data_registre'];
 
-
+    public function games()
+    {
+        return $this->hasMany('App\Models\Game', 'player_id', 'id');
+    }
 
 }

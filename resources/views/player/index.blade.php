@@ -62,6 +62,14 @@
                                                 </form>
                                             </td>
                                         </tr>
+                                        @foreach ($player->games as $game)
+                                        <tr>
+                                            <td></td>
+                                            <td>                                            
+                                            {{ $game->dau1.', '.$game->dau2.', '.$game->guanyada }}
+                                            </td>
+                                        </tr>
+                                        @endforeach   
                                     @endforeach
                                 </tbody>
                             </table>

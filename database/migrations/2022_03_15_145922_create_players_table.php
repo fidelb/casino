@@ -17,7 +17,7 @@ class CreatePlayersTable extends Migration
             $table->id();
             $table->string('nickname');
             $table->string('email');
-            $table->date('data_regostre');
+            $table->date('data_registre')->nullable();;
             $table->timestamps();
         });
     }
