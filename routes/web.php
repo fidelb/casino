@@ -16,3 +16,13 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('welcome');
 });
+
+Route::get('/', function () {
+    return view('welcome');
+})->name('login');
+
+Route::resource('games', 'App\Http\Controllers\GameController');
+
+Route::resource('players', 'App\Http\Controllers\PlayerController');
+
+
