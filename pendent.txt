@@ -1,0 +1,9 @@
+
+las rutas automáticas creadas con
+
+resource
+
+se pueden ver desde linea de comandos con
+algo parecido a : 
+php artisan routes list 
+te las saca por pantalla

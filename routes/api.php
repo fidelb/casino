@@ -2,6 +2,8 @@
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\APIPlayerController;
+use App\Http\Controllers\APIGameController;
 
 /*
 |--------------------------------------------------------------------------
@@ -14,9 +16,16 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/user', function (Request $request) {
+    return $request->user();
+});
+
+/*
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
+*/
+
 
 /*
 POST /players : crea un jugador
@@ -31,10 +40,11 @@ GET /players/ranking/loser: retorna el jugador amb pitjor percentatge d’èxit
 GET /players/ranking/winner: retorna el jugador amb pitjor percentatge d’èxit.
 */
 
+//Route::post('/players', [APIPlayerController::class, 'store']);
 Route::post('/players', [APIPlayerController::class, 'store']);
 Route::put('/players/{id}', [APIPlayerController::class, 'update']);
 
-Route::post('/players/{id}/games', [APIGameController::class, 'store']);
+Route::post('/players/{id}/games', [APIGameController::class, 'jugadaNova']);
 Route::delete('/players/{id}/games', [APIGameController::class, 'delete']);
 
 Route::get('/players', [APIPlayerController::class, 'index']);
@@ -43,5 +53,3 @@ Route::get('/players/{id}/games', [APIGameController::class, 'show']);
 Route::get('/players/ranking', [APIGameController::class, 'ranking']);
 Route::get('/players/ranking/loser', [APIGameController::class, 'ranking_loser']);
 Route::get('/players/ranking/winner', [APIGameController::class, 'ranking_winner']);
-
-
