@@ -46,10 +46,10 @@ class APIGameController extends Controller
      * @param  int $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
-        // retorna el llistat de jugades per un jugador.
-        $games = Game::where('player_id', '=', $id);
+        // retorna el llistat de jugades per un jugador.        
+        $games = Game::where('player_id', '=', $request->id)->get();
         return response()->json(compact('games'));
     }
 
@@ -58,13 +58,13 @@ class APIGameController extends Controller
      * @return \Illuminate\Http\RedirectResponse
      * @throws \Exception
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
         // elimina les tirades del jugador        
-        $games = Game::where('player_id', '=', $id)->delete();
+        $games = Game::where('player_id', '=', $request->id)->delete();
         
         // posar a 0 les partides en jugador        
-        $jugadorActual = Player::find($id);
+        $jugadorActual = Player::find($request->id);
         $jugadorActual->partidesJugades = null;
         $jugadorActual->partidesGuanyades = null;
         $jugadorActual->porcentatgeVictories = null;

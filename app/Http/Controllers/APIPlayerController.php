@@ -44,10 +44,10 @@ class APIPlayerController extends Controller
      * @param  Player $player
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
         //request()->validate(Player::$rules);
-        $player = Player::find($id);
+        $player = Player::find($request->id);
         $player->nickname = $request->nickname;
         $player->save();
         return response()->json(compact('player'));
@@ -62,14 +62,14 @@ class APIPlayerController extends Controller
 
     public function rankingLoser()    {
         /* retorna el jugador amb pitjor percentatge d’èxit */
-        $player =  Player::whereNotNull('porcentatgeVictories')->min('porcentatgeVictories');
+        $player =  Player::whereNotNull('porcentatgeVictories')->orderBy('porcentatgeVictories', 'asc')->first();
         return response()->json(compact('player'));
     }
 
     public function rankingWinner()
     {
         /* retorna el jugador amb millor percentatge d’èxit */
-        $player =  Player::max('porcentatgeVictories');
+        $player =  Player::orderBy('porcentatgeVictories', 'desc')->first();
         return response()->json(compact('player'));
     }
 
