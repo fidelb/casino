@@ -55,4 +55,13 @@ class Player extends Model
         $this->updateVictories();      
     }
 
+    public static function noExisteixNickname($nickname) {
+        return Player::Where('nickname', '=', $nickname)->get()->isEmpty();        
+    }
+
+    public static function percentatgeVictoriesJugador($id) {
+        $player = Self::find($id);
+        return $player->porcentatgeVictories;
+    }
+
 }

@@ -26,11 +26,16 @@ class APIGameController extends Controller
         $game->player_id = $request->id; // {id}
         $game->dau1 = rand(1, 6);
         $game->dau2 = rand(1, 6);
+        if ($game->dau1+$game->dau2 == 7) {
+            $game->guanyada = true;
+        } else {
+            $game->guanyada = false;
+        }    
         $game->save();
 
         // actualitzar les estadistiques del jugador
         $jugadorActual = Player::find($request->id);
-        if ($game->dau1+$game->dau2 == 7) {
+        if ($game->guanyada) {
             $jugadorActual->afegeixPartidaGuanyada();            
         } else {
             $jugadorActual->afegeixPartidaJugada();
@@ -50,7 +55,8 @@ class APIGameController extends Controller
     {
         // retorna el llistat de jugades per un jugador.        
         $games = Game::where('player_id', '=', $request->id)->get();
-        return response()->json(compact('games'));
+        $percentatgeExit = Player::percentatgeVictoriesJugador($request->id);
+        return response()->json(compact('games', 'percentatgeExit'));
     }
 
     /**

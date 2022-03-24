@@ -31,9 +31,27 @@ class APIPlayerController extends Controller
      */
     public function store(Request $request)
     {
-        //request()->validate(Player::$rules);
-        $player = Player::create($request->all());
-        return response()->json(compact('player'));
+        /*
+        Per poder jugar al joc prèviament has d'estar registrat com a usuari a l'aplicació 
+        amb un email únic i un nickname que no s'ha de repetir entre usuaris 
+        o si es prefereix, pot no afegir cap nom i es dirà “Anònim” per defecte. 
+        Hi pot haver més d'un jugador anònim
+        */
+        if (is_null($request->nickname) || $request->nickname == "Anonimo") {
+            //request()->validate(Player::$rules);
+            $player = Player::create(array_merge($request->all(), ['nickname' => 'Anonimo']));                      
+            return response()->json(compact('player'));
+        } elseif (Player::noExisteixNickname($request->nickname)) {
+            //request()->validate(Player::$rules);
+            $player = Player::create($request->all());
+            return response()->json(compact('player'));
+            
+        } else {
+            return response()->json("Error: nickname existe", 400);
+        }
+        
+
+        
 
     }
 
