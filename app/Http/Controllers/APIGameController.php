@@ -18,18 +18,18 @@ class APIGameController extends Controller
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function store($id)
+    public function store(Request $request)
     {        
         // un jugador específic realitza una tirada dels daus
         // crear tirada i desar a base de dades
         $game = new Game();
-        $game->player_id = $id; // {id}
+        $game->player_id = $request->id; // {id}
         $game->dau1 = rand(1, 6);
         $game->dau2 = rand(1, 6);
         $game->save();
 
         // actualitzar les estadistiques del jugador
-        $jugadorActual = Player::find($id);
+        $jugadorActual = Player::find($request->id);
         if ($game->dau1+$game->dau2 == 7) {
             $jugadorActual->afegeixPartidaGuanyada();            
         } else {
