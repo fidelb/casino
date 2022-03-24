@@ -39,4 +39,20 @@ class Player extends Model
         return $this->hasMany('App\Models\Game', 'player_id', 'id');
     }
 
+    public function updateVictories() {
+        $this->porcentatgeVictories=$this->partidesGuanyades*100/$this->partidesJugades;
+    }
+
+    public function afegeixPartidaJugada() {
+        $this->partidesJugades++;
+        $this->updateVictories();
+        
+    }
+
+    public function afegeixPartidaGuanyada() {
+        $this->partidesJugades++;
+        $this->partidesGuanyades++;
+        $this->updateVictories();      
+    }
+
 }

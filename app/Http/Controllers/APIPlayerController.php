@@ -18,20 +18,9 @@ class APIPlayerController extends Controller
      */
     public function index()
     {
-        return "soc el index de apiplayercontroller.";
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $player = new Player();
-        return view('player.create', compact('player'));
-        
-
+        /* retorna el llistat de tots els jugadors del sistema amb el seu percentatge mig d’èxits */
+        $players = Player::all('nickname', 'porcentatgeVictories');
+        return response()->json(compact('players'));
     }
 
     /**
@@ -42,38 +31,10 @@ class APIPlayerController extends Controller
      */
     public function store(Request $request)
     {
-        request()->validate(Player::$rules);
-
+        //request()->validate(Player::$rules);
         $player = Player::create($request->all());
+        return response()->json(compact('player'));
 
-        //tornar json
-
-    }
-
-    /**
-     * Display the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        $player = Player::find($id);
-
-        return view('player.show', compact('player'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $player = Player::find($id);
-
-        return view('player.edit', compact('player'));
     }
 
     /**
@@ -83,26 +44,35 @@ class APIPlayerController extends Controller
      * @param  Player $player
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Player $player)
+    public function update(Request $request, $id)
     {
-        request()->validate(Player::$rules);
-
-        $player->update($request->all());
-
-        return redirect()->route('players.index')
-            ->with('success', 'Player updated successfully');
+        //request()->validate(Player::$rules);
+        $player = Player::find($id);
+        $player->nickname = $request->nickname;
+        $player->save();
+        return response()->json(compact('player'));
     }
 
-    /**
-     * @param int $id
-     * @return \Illuminate\Http\RedirectResponse
-     * @throws \Exception
-     */
-    public function destroy($id)
+    public function ranking()
     {
-        $player = Player::find($id)->delete();
-
-        return redirect()->route('players.index')
-            ->with('success', 'Player deleted successfully');
+        /* retorna el ranking mig de tots els jugadors del sistema. 
+            És a dir, el percentatge mig d’èxits. */
+        return Player::avg('porcentatgeVictories');
     }
+
+    public function rankingLoser()    {
+        /* retorna el jugador amb pitjor percentatge d’èxit */
+        $player =  Player::whereNotNull('porcentatgeVictories')->min('porcentatgeVictories');
+        return response()->json(compact('player'));
+    }
+
+    public function rankingWinner()
+    {
+        /* retorna el jugador amb millor percentatge d’èxit */
+        $player =  Player::max('porcentatgeVictories');
+        return response()->json(compact('player'));
+    }
+
+    
+    
 }

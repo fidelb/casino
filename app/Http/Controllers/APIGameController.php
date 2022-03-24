@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Game;
+use App\Models\Player;
 use Illuminate\Http\Request;
 
 /**
@@ -10,62 +11,33 @@ use Illuminate\Http\Request;
  * @package App\Http\Controllers
  */
 class APIGameController extends Controller
-{
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function index()
-    {
-        $games = Game::paginate();
-
-        return view('game.index', compact('games'))
-            ->with('i', (request()->input('page', 1) - 1) * $games->perPage());
-    }
-
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        $game = new Game();
-        return view('game.create', compact('game'));
-    }
-
+{    
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request $request
      * @return \Illuminate\Http\Response
      */
-    public function jugadaNova(Request $request)
-    {
-        request()->validate(Game::$rules);
-
-        //llenço els daus
-
-
-
-        $dau1 = 3;
-        $dau2 = 4;
-        $jugador = $request['id']; // {id}
-        
-        //deso a base de dades la nova jugada
-        $game = Game::create($request->all());
+    public function store($id)
+    {        
+        // un jugador específic realitza una tirada dels daus
+        // crear tirada i desar a base de dades
+        $game = new Game();
+        $game->player_id = $id; // {id}
+        $game->dau1 = rand(1, 6);
+        $game->dau2 = rand(1, 6);
+        $game->save();
 
         // actualitzar les estadistiques del jugador
-        $jugadorActual = Player::find(id == $jugador);
-        if ($dau1+$dau2 == 7) {
-            $jugadorActual.afegeixPartidaGuanyada();
-            $jugadorActual.afegeixPartidaJugada();
+        $jugadorActual = Player::find($id);
+        if ($game->dau1+$game->dau2 == 7) {
+            $jugadorActual->afegeixPartidaGuanyada();            
         } else {
-            $jugadorActual.afegeixPartidaJugada();
+            $jugadorActual->afegeixPartidaJugada();
         }
+        $jugadorActual->save();
 
-        return del json;
+        return response()->json(compact('game'));
     }
 
     /**
@@ -76,39 +48,9 @@ class APIGameController extends Controller
      */
     public function show($id)
     {
-        $game = Game::find($id);
-
-        return view('game.show', compact('game'));
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        $game = Game::find($id);
-
-        return view('game.edit', compact('game'));
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request $request
-     * @param  Game $game
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Game $game)
-    {
-        request()->validate(Game::$rules);
-
-        $game->update($request->all());
-
-        return redirect()->route('games.index')
-            ->with('success', 'Game updated successfully');
+        // retorna el llistat de jugades per un jugador.
+        $games = Game::where('player_id', '=', $id);
+        return response()->json(compact('games'));
     }
 
     /**
@@ -118,9 +60,15 @@ class APIGameController extends Controller
      */
     public function destroy($id)
     {
-        $game = Game::find($id)->delete();
+        // elimina les tirades del jugador        
+        $games = Game::where('player_id', '=', $id)->delete();
+        
+        // posar a 0 les partides en jugador        
+        $jugadorActual = Player::find($id);
+        $jugadorActual->partidesJugades = null;
+        $jugadorActual->partidesGuanyades = null;
+        $jugadorActual->porcentatgeVictories = null;
+        $jugadorActual->save();
 
-        return redirect()->route('games.index')
-            ->with('success', 'Game deleted successfully');
     }
 }
