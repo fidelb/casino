@@ -56,7 +56,7 @@ class APIGameController extends Controller
         // retorna el llistat de jugades per un jugador.        
         $games = Game::where('player_id', '=', $request->id)->get();
         $percentatgeExit = Player::percentatgeVictoriesJugador($request->id);
-        return response()->json(compact('games', 'percentatgeExit'));
+        return response()->json(compact('percentatgeExit', 'games'));
     }
 
     /**
