@@ -22,27 +22,34 @@ class APIGameController extends Controller
     {        
         // un jugador específic realitza una tirada dels daus
         // crear tirada i desar a base de dades
-        $game = new Game();
-        $game->player_id = $request->id; // {id}
-        $game->dau1 = rand(1, 6);
-        $game->dau2 = rand(1, 6);
-        if ($game->dau1+$game->dau2 == 7) {
-            $game->guanyada = true;
-        } else {
-            $game->guanyada = false;
-        }    
-        $game->save();
+        $client = auth('api')->user();
+        if ($client->esAdmin || $client->id == $request->id){
+                
+            $game = new Game();
+            $game->player_id = $request->id; // {id}
+            $game->dau1 = rand(1, 6);
+            $game->dau2 = rand(1, 6);
+            if ($game->dau1+$game->dau2 == 7) {
+                $game->guanyada = true;
+            } else {
+                $game->guanyada = false;
+            }    
+            $game->save();
 
-        // actualitzar les estadistiques del jugador
-        $jugadorActual = Player::find($request->id);
-        if ($game->guanyada) {
-            $jugadorActual->afegeixPartidaGuanyada();            
+            // actualitzar les estadistiques del jugador
+            $jugadorActual = Player::find($request->id);
+            if ($game->guanyada) {
+                $jugadorActual->afegeixPartidaGuanyada();            
+            } else {
+                $jugadorActual->afegeixPartidaJugada();
+            }
+            $jugadorActual->save();            
+            //$client = auth()->user()->Token()->getAttribute('client_id');
+
+            return response()->json(compact('game', 'client'));
         } else {
-            $jugadorActual->afegeixPartidaJugada();
+            return response()->json("Error. Usuario no autorizado.");
         }
-        $jugadorActual->save();
-
-        return response()->json(compact('game'));
     }
 
     /**
