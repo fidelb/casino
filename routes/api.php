@@ -67,4 +67,4 @@ Route::get('/players/ranking', [APIPlayerController::class, 'ranking'])->middlew
 /* GET /players/ranking/loser: retorna el jugador amb pitjor percentatge d’èxit */
 Route::get('/players/ranking/loser', [APIPlayerController::class, 'rankingLoser'])->middleware('auth:api');
 /* GET /players/ranking/winner: retorna el jugador amb millor percentatge d’èxit. */
-Route::get('/players/ranking/winner', [APIPlayerController::class, 'rankingWinner'])->middleware('auth:api');
+Route::get('/players/ranking/winner', [APIPlayerController::class, 'rankingWinner']);
