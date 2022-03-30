@@ -22,9 +22,10 @@ class APIGameController extends Controller
     {        
         // un jugador específic realitza una tirada dels daus
         // crear tirada i desar a base de dades
-        $client = auth('api')->user();
+        
+        /*$client = auth('api')->user();
         if ($client->esAdmin || $client->id == $request->id){
-                
+        */        
             $game = new Game();
             $game->player_id = $request->id; // {id}
             $game->dau1 = rand(1, 6);
@@ -47,9 +48,12 @@ class APIGameController extends Controller
             //$client = auth()->user()->Token()->getAttribute('client_id');
 
             return response()->json(compact('game', 'client'));
+        
+        /*
         } else {
             return response()->json("Error. Usuario no autorizado.");
         }
+        */
     }
 
     /**
