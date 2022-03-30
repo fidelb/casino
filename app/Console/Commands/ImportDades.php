@@ -38,18 +38,18 @@ class ImportDades extends Command
      */
     public function handle()
     {
-        DB::unprepared(file_get_contents('casino_failed_jobs.sql'));
-        DB::unprepared(file_get_contents('casino_games.sql'));
-        DB::unprepared(file_get_contents('casino_migrations.sql'));
-        DB::unprepared(file_get_contents('casino_oauth_access_tokens.sql'));
-        DB::unprepared(file_get_contents('casino_oauth_auth_codes.sql'));
-        DB::unprepared(file_get_contents('casino_oauth_clients.sql'));
-        DB::unprepared(file_get_contents('casino_oauth_personal_access_clients.sql'));
-        DB::unprepared(file_get_contents('casino_oauth_refresh_tokens.sql'));
-        DB::unprepared(file_get_contents('casino_password_resets.sql'));
-        DB::unprepared(file_get_contents('casino_personal_access_tokens.sql'));
-        DB::unprepared(file_get_contents('casino_players.sql'));
-        DB::unprepared(file_get_contents('casino_users.sql'));
+        DB::unprepared(file_get_contents(storage_path('casino_failed_jobs.sql')));
+        DB::unprepared(file_get_contents(storage_path('casino_games.sql')));
+        DB::unprepared(file_get_contents(storage_path('casino_migrations.sql')));
+        DB::unprepared(file_get_contents(storage_path('casino_oauth_access_tokens.sql')));
+        DB::unprepared(file_get_contents(storage_path('casino_oauth_auth_codes.sql')));
+        DB::unprepared(file_get_contents(storage_path('casino_oauth_clients.sql')));
+        DB::unprepared(file_get_contents(storage_path('casino_oauth_personal_access_clients.sql')));
+        DB::unprepared(file_get_contents(storage_path('casino_oauth_refresh_tokens.sql')));
+        DB::unprepared(file_get_contents(storage_path('casino_password_resets.sql')));
+        DB::unprepared(file_get_contents(storage_path('casino_personal_access_tokens.sql')));
+        DB::unprepared(file_get_contents(storage_path('casino_players.sql')));
+        DB::unprepared(file_get_contents(storage_path('casino_users.sql')));
                 
         return 0;
     }
