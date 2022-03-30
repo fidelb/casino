@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `oauth_clients`
+-- Dumping data for table 'oauth_clients'
 --
 
-LOCK TABLES `oauth_clients` WRITE;
-/*!40000 ALTER TABLE `oauth_clients` DISABLE KEYS */;
-INSERT INTO `oauth_clients` VALUES ('95edaaf9-c29f-4f3c-b04b-b600091f6daf',1,'Fidel','Gv65Bo8nbJ8biQw5RcH7MzazNlJuzxaSSQZKuol6',NULL,'http://localhost/auth/callback',0,1,0,'2022-03-28 13:08:02','2022-03-28 13:08:02'),('95edbfdd-3e28-405a-ac52-e69d7d4471d5',3,'Albert','o4vsQHLEEI6fPWbZrKa20Vs1QN4K8ncRVJWkrOqu',NULL,'http://localhost/auth/callback',0,1,0,'2022-03-28 14:06:27','2022-03-28 14:06:27'),('95ef9efc-d188-458d-a47c-5622ad255ebf',2,'Joan','r9osD2PhR6KCNRlXpXmdHlsYJDjSKsZ09I4ZFd8a',NULL,'http://localhost/auth/callback',0,1,0,'2022-03-29 12:26:11','2022-03-29 12:26:11');
-/*!40000 ALTER TABLE `oauth_clients` ENABLE KEYS */;
+LOCK TABLES 'oauth_clients' WRITE;
+/*!40000 ALTER TABLE 'oauth_clients' DISABLE KEYS */;
+INSERT INTO 'oauth_clients' VALUES ('95edaaf9-c29f-4f3c-b04b-b600091f6daf',1,'Fidel','Gv65Bo8nbJ8biQw5RcH7MzazNlJuzxaSSQZKuol6',NULL,'http://localhost/auth/callback',0,1,0,'2022-03-28 13:08:02','2022-03-28 13:08:02'),('95edbfdd-3e28-405a-ac52-e69d7d4471d5',3,'Albert','o4vsQHLEEI6fPWbZrKa20Vs1QN4K8ncRVJWkrOqu',NULL,'http://localhost/auth/callback',0,1,0,'2022-03-28 14:06:27','2022-03-28 14:06:27'),('95ef9efc-d188-458d-a47c-5622ad255ebf',2,'Joan','r9osD2PhR6KCNRlXpXmdHlsYJDjSKsZ09I4ZFd8a',NULL,'http://localhost/auth/callback',0,1,0,'2022-03-29 12:26:11','2022-03-29 12:26:11');
+/*!40000 ALTER TABLE 'oauth_clients' ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

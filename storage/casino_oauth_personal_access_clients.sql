@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `oauth_personal_access_clients`
+-- Dumping data for table 'oauth_personal_access_clients'
 --
 
-LOCK TABLES `oauth_personal_access_clients` WRITE;
-/*!40000 ALTER TABLE `oauth_personal_access_clients` DISABLE KEYS */;
-INSERT INTO `oauth_personal_access_clients` VALUES (1,'95ed9e7c-a872-4f6f-be7d-bd92dfc0fb2d','2022-03-28 12:33:08','2022-03-28 12:33:08');
-/*!40000 ALTER TABLE `oauth_personal_access_clients` ENABLE KEYS */;
+LOCK TABLES 'oauth_personal_access_clients' WRITE;
+/*!40000 ALTER TABLE 'oauth_personal_access_clients' DISABLE KEYS */;
+INSERT INTO 'oauth_personal_access_clients' VALUES (1,'95ed9e7c-a872-4f6f-be7d-bd92dfc0fb2d','2022-03-28 12:33:08','2022-03-28 12:33:08');
+/*!40000 ALTER TABLE 'oauth_personal_access_clients' ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

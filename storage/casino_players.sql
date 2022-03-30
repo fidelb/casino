@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `players`
+-- Dumping data for table 'players'
 --
 
-LOCK TABLES `players` WRITE;
-/*!40000 ALTER TABLE `players` DISABLE KEYS */;
-INSERT INTO `players` VALUES (1,'Anonimo','anonimo@gmail.com',NULL,'2022-03-29 12:43:12','2022-03-29 12:43:12',NULL,NULL,NULL),(2,'Joanet','joan@gmail.com',NULL,'2022-03-29 12:43:39','2022-03-29 13:55:41',10,1,10),(3,'Albert','alberttgn@gmail.com',NULL,'2022-03-29 12:44:03','2022-03-29 13:56:26',11,NULL,0),(4,'Pedro Nieto','pedro@gmail.com',NULL,'2022-03-29 13:43:10','2022-03-29 13:48:28',NULL,NULL,NULL);
-/*!40000 ALTER TABLE `players` ENABLE KEYS */;
+LOCK TABLES 'players' WRITE;
+/*!40000 ALTER TABLE 'players' DISABLE KEYS */;
+INSERT INTO 'players' VALUES (1,'Anonimo','anonimo@gmail.com',NULL,'2022-03-29 12:43:12','2022-03-29 12:43:12',NULL,NULL,NULL),(2,'Joanet','joan@gmail.com',NULL,'2022-03-29 12:43:39','2022-03-29 13:55:41',10,1,10),(3,'Albert','alberttgn@gmail.com',NULL,'2022-03-29 12:44:03','2022-03-29 13:56:26',11,NULL,0),(4,'Pedro Nieto','pedro@gmail.com',NULL,'2022-03-29 13:43:10','2022-03-29 13:48:28',NULL,NULL,NULL);
+/*!40000 ALTER TABLE 'players' ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 

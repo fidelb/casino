@@ -16,13 +16,13 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Dumping data for table `users`
+-- Dumping data for table 'users'
 --
 
-LOCK TABLES `users` WRITE;
-/*!40000 ALTER TABLE `users` DISABLE KEYS */;
-INSERT INTO `users` VALUES (1,'Fidel','fidelb@gmail.com',NULL,'$2y$10$k70sY47axWnHzJBdMnq1Fun8e1I/Pp44nOQWTeGGzDSUewYVT.fj6',NULL,NULL,NULL,1),(2,'Joan','joan@gmail.com',NULL,'$2y$10$mtF/Z7oMEun0g06UimzKUu7rfPp4rEVDS50OzCy6McoM2tMyEH/5G',NULL,NULL,NULL,0),(3,'Albert','alberttgn@gmail.com',NULL,'$2y$10$uBrDG1PqSmu7W6Qla.XdVOcpbi89PgJumErAck3vAHJ7GZCKug/XS',NULL,NULL,NULL,0);
-/*!40000 ALTER TABLE `users` ENABLE KEYS */;
+LOCK TABLES 'users' WRITE;
+/*!40000 ALTER TABLE 'users' DISABLE KEYS */;
+INSERT INTO 'users' VALUES (1,'Fidel','fidelb@gmail.com',NULL,'$2y$10$k70sY47axWnHzJBdMnq1Fun8e1I/Pp44nOQWTeGGzDSUewYVT.fj6',NULL,NULL,NULL,1),(2,'Joan','joan@gmail.com',NULL,'$2y$10$mtF/Z7oMEun0g06UimzKUu7rfPp4rEVDS50OzCy6McoM2tMyEH/5G',NULL,NULL,NULL,0),(3,'Albert','alberttgn@gmail.com',NULL,'$2y$10$uBrDG1PqSmu7W6Qla.XdVOcpbi89PgJumErAck3vAHJ7GZCKug/XS',NULL,NULL,NULL,0);
+/*!40000 ALTER TABLE 'users' ENABLE KEYS */;
 UNLOCK TABLES;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
