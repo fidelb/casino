@@ -17,7 +17,10 @@ class CreatePlayersTable extends Migration
             $table->id();
             $table->string('nickname');
             $table->string('email');
-            $table->date('data_registre')->nullable();;
+            $table->integer('partidesJugades')->nullable();
+            $table->integer('partidesGuanyades')->nullable();            
+            $table->decimal('porcentatgeVictories', 12, 2)->nullable();
+            $table->date('data_registre')->nullable();
             $table->timestamps();
         });
     }

@@ -18,7 +18,7 @@ class CreateGamesTable extends Migration
             $table->unsignedBigInteger('player_id')->nullable();
             $table->integer('dau1');
             $table->integer('dau2');
-            $table->boolean('guanyada');
+            $table->boolean('guanyada')->nullable();  
             $table->timestamp('data')->nullable();          
             $table->timestamps();
 
