@@ -47,7 +47,8 @@ class APIGameController extends Controller
             $jugadorActual->save();            
             //$client = auth()->user()->Token()->getAttribute('client_id');
 
-            return response()->json(compact('game', 'client'));
+            //return response()->json(compact('game', 'client'));
+            return response()->json(compact('game'));
         
         /*
         } else {
